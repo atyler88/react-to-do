@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Todos from './Todos'
+import AddTodo from './AddForm'
+
 class App extends Component {
   state = {
     todos: [
@@ -15,6 +17,12 @@ class App extends Component {
       todos
     })
   }
+  addTodo =(todo) => {
+    let newTodos = [...this.state.todos, todo];
+    this.setState({
+      todos: newTodos
+    })
+  }
   render() {
     return (
       <div className="todo-app container">
@@ -23,6 +31,7 @@ class App extends Component {
           <polygon className='hex' points='300,150 225,280 75,280 0,150 75,20 225,20'fill='#fa5' transform="rotate(90, 150, 150)"/>
         </svg></h1>
         <Todos todos={this.state.todos} deleteTodo={this.deleteTodo}/>
+        <AddTodo addTodo={this.addTodo}/>
       </div>
     );
   }
